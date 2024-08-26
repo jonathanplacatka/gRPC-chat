@@ -1,0 +1,71 @@
+service Chat {
+  rpc CreateRoom (CreateRequest) returns (CreateResponse);
+  rpc ListRooms (ListRequest) returns (ListResponse);
+  rpc GetRoomInfo (InfoRequest) returns (InfoResponse);
+  rpc JoinRoom (JoinRequest) returns (JoinResponse);
+  rpc LeaveRoom (LeaveRequest) returns (LeaveResponse);
+  rpc GetMessages (GetMessagesRequest) returns (stream ChatMessage);
+  rpc SendMessage (SendRequest) returns (SendResponse);
+}
+
+message CreateRequest {
+  required string room_name = 1;
+}
+
+message CreateResponse {
+  required string message = 1;
+}
+
+message ListRequest {}
+
+message ListResponse {
+  required string message = 1;
+}
+
+message InfoRequest {
+  required string room_name = 1;
+}
+
+message InfoResponse {
+  required string info = 1;
+}
+
+message JoinRequest {
+  required string room_name = 1;
+  required string user = 2;
+}
+
+message JoinResponse {
+  required bool success = 1;
+  required string message = 3;
+}
+
+message LeaveRequest {
+  required string room_name = 1;
+  required string user = 2;
+}
+
+message LeaveResponse {
+  required bool success = 1;
+}
+
+message GetMessagesRequest {
+  required string room_name = 1;
+  required string user = 2;
+}
+
+message ChatMessage {
+  required string message = 1;
+  required string user = 2;
+}
+
+message SendRequest {
+  required string room_name = 1;
+  required string user = 2;
+  required string message = 3;
+}
+
+message SendResponse {
+  required bool success = 1;
+}
+
